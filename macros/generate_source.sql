@@ -21,18 +21,18 @@
 {% do sources_yaml.append('version: 2') %}
 {% do sources_yaml.append('') %}
 {% do sources_yaml.append('sources:') %}
-{% do sources_yaml.append('  - name: ' ~ name | lower) %}
+{% do sources_yaml.append('  - name: ' ~ name) %}
 
 {% if include_descriptions %}
     {% do sources_yaml.append('    description: ""' ) %}
 {% endif %}
 
 {% if database_name != target.database %}
-{% do sources_yaml.append('    database: ' ~ database_name | lower) %}
+{% do sources_yaml.append('    database: ' ~ database_name) %}
 {% endif %}
 
 {% if schema_name != name %}
-{% do sources_yaml.append('    schema: ' ~ schema_name | lower) %}
+{% do sources_yaml.append('    schema: ' ~ schema_name) %}
 {% endif %}
 
 {% do sources_yaml.append('    tables:') %}
@@ -44,7 +44,7 @@
 {% endif %}
 
 {% for table in tables %}
-    {% do sources_yaml.append('      - name: ' ~ table | lower ) %}
+    {% do sources_yaml.append('      - name: ' ~ table) %}
     {% if include_descriptions %}
         {% do sources_yaml.append('        description: ""' ) %}
     {% endif %}
@@ -60,7 +60,7 @@
         {% set columns=adapter.get_columns_in_relation(table_relation) %}
 
         {% for column in columns %}
-            {% do sources_yaml.append('          - name: ' ~ column.name | lower ) %}
+            {% do sources_yaml.append('          - name: ' ~ column.name) %}
             {% if include_data_types %}
                 {% do sources_yaml.append('            data_type: ' ~ (column.data_type | upper ) ) %}
             {% endif %}
